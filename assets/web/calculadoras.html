@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadoras · Obras por Impuestos PRO</title>
+<link rel="stylesheet" href="assets/tools.css"></head>
+<body class="acc-a5 tool">
+<div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
+<h1>🧮 Calculadoras ilustrativas</h1>
+<p class="sub">Tres cálculos sencillos para ordenar ideas. Todos los porcentajes y supuestos los pones tú.</p>
+<div class="warn"><b>Ejemplo ilustrativo, no es asesoría.</b> Los resultados no son una promesa de financiamiento, de plazo ni de recupero. Verificar la norma vigente y el expediente técnico aprobado, y consultar a un asesor tributario y legal.</div>
+
+<div class="card"><h2>A. Capacidad de una empresa frente al costo de la obra</h2>
+<p class="lead">Estima cuántos años de impuesto podría absorber el costo, según el porcentaje que tú indiques.</p>
+<label>Impuesto anual estimado de la empresa (S/)</label><input type="number" id="a_imp" inputmode="decimal" placeholder="Ej.: 2000000">
+<div class="row"><div><label>% aplicable (editable)</label><input type="number" id="a_pct" inputmode="decimal" value="80"></div><div><label>Costo de la obra (S/)</label><input type="number" id="a_cos" inputmode="decimal" placeholder="Ej.: 5000000"></div></div>
+<div class="warn">El 80 % es solo un valor de partida: según reportes del reglamento vigente, el uso llegaría hasta el 80 % de la deuda tributaria aplicable. Verificar el tope vigente en el texto de la norma.</div>
+<div id="a_out"></div></div>
+
+<div class="card"><h2>B. Cronograma de recupero por años</h2>
+<p class="lead">Distribuye el certificado en años según la capacidad anual que supongas. No es un plazo prometido.</p>
+<div class="row"><div><label>Monto de certificados (S/)</label><input type="number" id="b_mon" inputmode="decimal" placeholder="Ej.: 5000000"></div><div><label>Capacidad de uso anual (S/)</label><input type="number" id="b_cap" inputmode="decimal" placeholder="Ej.: 1600000"></div></div>
+<div class="row"><div><label>Crecimiento anual de la capacidad (%)</label><input type="number" id="b_cre" inputmode="decimal" value="0"></div><div><label>Año de inicio de uso</label><input type="number" id="b_ini" inputmode="numeric" value="2027"></div></div>
+<div id="b_out"></div></div>
+
+<div class="card"><h2>C. Costo financiero y de supervisión referencial</h2>
+<p class="lead">Escribe tus propios porcentajes; la herramienta no trae ninguno como si fuera norma.</p>
+<label>Costo de la obra (S/)</label><input type="number" id="c_cos" inputmode="decimal" placeholder="Ej.: 5000000">
+<div class="row"><div><label>% costo financiero (tu supuesto)</label><input type="number" id="c_fin" inputmode="decimal" placeholder="Tu supuesto"></div><div><label>% supervisión (tu supuesto)</label><input type="number" id="c_sup" inputmode="decimal" placeholder="Tu supuesto"></div></div>
+<label>% otros gastos (tu supuesto, opcional)</label><input type="number" id="c_otr" inputmode="decimal" placeholder="Tu supuesto">
+<div class="warn">Si estos conceptos se reconocen y con qué límites lo define el reglamento y el convenio: verificar la norma vigente y el expediente técnico aprobado.</div>
+<div id="c_out"></div></div>
+
+<p class="foot">Ejemplo ilustrativo, no es asesoría. Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
+<script>
+(function () {
+  /* ---- Funciones puras ---- */
+  function num(x) { var n = parseFloat(x); return isFinite(n) ? n : 0; }
+  function fmt(n) { return 'S/ ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+  function capacidad(impuesto, pct, costo) {
+    var cap = impuesto * pct / 100;
+    return { cap: cap, ratio: cap > 0 ? costo / cap : null, anios: cap > 0 ? Math.ceil(costo / cap) : null };
+  }
+  function cronograma(monto, cap, cre, ini) {
+    var rows = [], saldo = monto, c = cap, y = 0;
+    if (monto <= 0 || cap <= 0) return rows;
+    while (saldo > 0.5 && y < 40) {
+      var uso = Math.min(saldo, c);
+      saldo -= uso; rows.push({ anio: ini + y, uso: uso, saldo: saldo });
+      c = c * (1 + cre / 100); y++;
+    }
+    return rows;
+  }
+  function costos(costo, fin, sup, otr) {
+    var f = costo * fin / 100, s = costo * sup / 100, o = costo * otr / 100;
+    return { fin: f, sup: s, otr: o, total: costo + f + s + o, extra: f + s + o };
+  }
+  /* ---- Interfaz ---- */
+  function g(id) { return num(document.getElementById(id).value); }
+  function set(id, h) { document.getElementById(id).innerHTML = h; }
+  function A() {
+    var imp = g('a_imp'), pct = g('a_pct'), cos = g('a_cos');
+    if (imp <= 0 || cos <= 0) { set('a_out', '<p class="lead">Ingresa impuesto y costo.</p>'); return; }
+    var r = capacidad(imp, pct, cos);
+    if (r.cap <= 0) { set('a_out', '<div class="warn">Con ese porcentaje la capacidad es cero.</div>'); return; }
+    set('a_out', '<div class="good"><b>Resultado ILUSTRATIVO.</b><br>Capacidad anual supuesta: <b>' + fmt(r.cap) + '</b><br>Costo / capacidad anual: <b>' + r.ratio.toFixed(2) + '</b> años de capacidad<br>Equivale a unos <b>' + r.anios + '</b> año(s) de uso completo bajo estos supuestos.</div><div class="warn">No refleja otros usos del impuesto, cambios de resultado de la empresa ni condiciones del convenio. La empresa debe validarlo con su asesor tributario.</div>');
+  }
+  function B() {
+    var rows = cronograma(g('b_mon'), g('b_cap'), g('b_cre'), Math.round(g('b_ini')));
+    if (!rows.length) { set('b_out', '<p class="lead">Ingresa monto y capacidad anual.</p>'); return; }
+    var h = '<table><tr><th>Año</th><th>Uso supuesto</th><th>Saldo</th></tr>';
+    rows.forEach(function (r) { h += '<tr><td>' + r.anio + '</td><td>' + fmt(r.uso) + '</td><td>' + fmt(r.saldo) + '</td></tr>'; });
+    set('b_out', '<div class="good"><b>Cronograma ILUSTRATIVO</b> según tus supuestos.</div>' + h + '</table><div class="warn">No es un plazo ni una garantía de recupero. La vigencia, cesión y forma de uso de los certificados dependen de la norma vigente.</div>');
+  }
+  function C() {
+    var cos = g('c_cos');
+    if (cos <= 0) { set('c_out', '<p class="lead">Ingresa el costo de la obra.</p>'); return; }
+    var r = costos(cos, g('c_fin'), g('c_sup'), g('c_otr'));
+    set('c_out', '<table><tr><th>Concepto</th><th>Monto</th></tr><tr><td>Costo de la obra</td><td>' + fmt(cos) + '</td></tr><tr><td>Costo financiero (tu %)</td><td>' + fmt(r.fin) + '</td></tr><tr><td>Supervisión (tu %)</td><td>' + fmt(r.sup) + '</td></tr><tr><td>Otros (tu %)</td><td>' + fmt(r.otr) + '</td></tr><tr><th>Total referencial</th><th>' + fmt(r.total) + '</th></tr></table><div class="warn">Referencial e ilustrativo. Adicional sobre el costo: ' + fmt(r.extra) + '.</div>');
+  }
+  var defs = { a_imp: A, a_pct: A, a_cos: A, b_mon: B, b_cap: B, b_cre: B, b_ini: B, c_cos: C, c_fin: C, c_sup: C, c_otr: C };
+  var saved = Store.get('calc', {});
+  Object.keys(defs).forEach(function (k) {
+    var el = document.getElementById(k);
+    if (saved[k] != null) el.value = saved[k];
+    el.oninput = function () { saved[k] = el.value; Store.set('calc', saved); defs[k](); };
+  });
+  A(); B(); C();
+})();
+</script></body></html>

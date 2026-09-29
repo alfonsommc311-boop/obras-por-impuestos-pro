@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ruta paso a paso · Obras por Impuestos PRO</title>
+<link rel="stylesheet" href="assets/tools.css">
+<style>.tool input[type=date]{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:#0e2242;color:var(--ink);font:inherit}.hito{border-bottom:1px solid var(--line);padding:10px 0}.hito .n{color:var(--coral);font-weight:700}.hito.on .tt{color:#9be3b6}</style></head>
+<body class="acc-a10 tool">
+<div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
+<h1>🪜 Ruta paso a paso</h1>
+<p class="sub">Los hitos de la entidad, de la priorización al mantenimiento. Marca cada uno y anota tu fecha real o prevista. Se guarda en tu teléfono.</p>
+<div class="card"><div class="card-h"><h2>Avance</h2><span class="lead" id="pc"></span></div><div class="bar"><i id="pb"></i></div></div>
+<div id="app"></div>
+<button class="btn sec" id="reset">Reiniciar ruta</button>
+<div class="warn">Las fechas son tuyas: esta herramienta no fija plazos legales. El orden y los requisitos exactos dependen de la modalidad y del reglamento vigente. Verificar la norma vigente y el expediente técnico aprobado.</div>
+<p class="foot">Casos ficticios (Municipalidad Distrital de Villa Esperanza, Empresa Andina S.A.A.). Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
+<script>
+(function () {
+  var H = [
+    ['Priorizar el proyecto en la cartera de la entidad', 'Sustenta la brecha y deja constancia de la priorización.', 'brecha-y-criterios-de-priorizacion'],
+    ['Asegurar CUI y viabilidad', 'Registro en el Banco de Inversiones y aprobación según corresponda.', 'viabilidad-y-registro'],
+    ['Aprobar el expediente técnico', 'Completo, con costos actualizados y terreno saneado.', 'el-expediente-tecnico'],
+    ['Contar con respaldo del concejo y equipos designados', 'UF, UEI y OPMI definidos; respaldo político formal.', 'uf-uei-y-opmi'],
+    ['Preparar el informe previo y la capacidad presupuestal', 'Requisitos previos al convenio; confirmar límites aplicables.', 'capacidad-presupuestal-y-limites'],
+    ['Difundir el proyecto y atraer al financista', 'Ficha comercial, ruedas de inversionistas y cartas de invitación.', 'la-ficha-comercial-del-proyecto'],
+    ['Suscribir el convenio de inversión', 'Definir obligaciones, garantías y forma de ejecución.', 'el-convenio-de-inversion'],
+    ['Seleccionar ejecutora y supervisora', 'Bases, comité, consultas y buena pro.', 'seleccion-de-ejecutora-y-supervisora'],
+    ['Iniciar y ejecutar la obra', 'Inicio de obra, cuaderno, valorizaciones y control de cambios.', 'inicio-de-obra'],
+    ['Supervisar y responder al control', 'Informes de supervisión, control concurrente y transparencia.', 'la-supervision-en-oxi'],
+    ['Recepcionar la obra', 'Recepción conforme y levantamiento de observaciones.', 'recepcion-de-obra'],
+    ['Liquidar la obra y gestionar los certificados', 'Liquidación y emisión del certificado según el régimen aplicable.', 'liquidacion-de-obra'],
+    ['Transferir al operador y poner la obra en uso', 'Entrega formal a quien operará el servicio.', 'transferencia-al-operador'],
+    ['Mantener y medir el impacto', 'Presupuesto de mantenimiento e indicadores de resultado.', 'operacion-y-mantenimiento']
+  ];
+  var st = Store.get('ruta', {});
+  function draw() {
+    var ok = 0, h = '';
+    H.forEach(function (x, i) {
+      var s = st['h' + i] || {}; if (s.ok) ok++;
+      h += '<div class="card"><div class="hito' + (s.ok ? ' on' : '') + '" style="border:0;padding:0"><label class="chk" style="margin:0;color:var(--ink);font-size:1rem;border:0"><input type="checkbox" data-i="' + i + '"' + (s.ok ? ' checked' : '') + '><span class="tt"><span class="n">' + (i + 1) + '.</span> <b>' + x[0] + '</b><br><span class="lead">' + x[1] + '</span></span></label>' +
+        '<label>Fecha (real o prevista)</label><input type="date" data-d="' + i + '" value="' + (s.f || '') + '">' +
+        '<p style="margin:8px 0 0"><a href="lesson.html?l=' + x[2] + '">📖 Ver la lección</a></p></div></div>';
+    });
+    var p = Math.round(100 * ok / H.length);
+    document.getElementById('pc').textContent = ok + '/' + H.length + ' · ' + p + ' %';
+    document.getElementById('pb').style.width = p + '%';
+    document.getElementById('app').innerHTML = h;
+    var c = document.querySelectorAll('input[data-i]'), d = document.querySelectorAll('input[data-d]'), j;
+    for (j = 0; j < c.length; j++) (function (e) { e.onchange = function () { var k = 'h' + e.getAttribute('data-i'); st[k] = st[k] || {}; st[k].ok = e.checked; Store.set('ruta', st); draw(); }; })(c[j]);
+    for (j = 0; j < d.length; j++) (function (e) { e.onchange = function () { var k = 'h' + e.getAttribute('data-d'); st[k] = st[k] || {}; st[k].f = e.value; Store.set('ruta', st); }; })(d[j]);
+  }
+  document.getElementById('reset').onclick = function () { st = {}; Store.set('ruta', st); draw(); };
+  draw();
+})();
+</script></body></html>

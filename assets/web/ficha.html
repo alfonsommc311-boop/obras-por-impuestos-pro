@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ficha para inversionistas · Obras por Impuestos PRO</title>
+<link rel="stylesheet" href="assets/tools.css"></head>
+<body class="acc-a7 tool">
+<div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
+<h1>🧲 Ficha de proyecto para inversionistas</h1>
+<p class="sub">Completa los datos y copia un texto claro para enviar a empresas. Se guarda en tu teléfono.</p>
+<div class="warn">No exageres ni prometas. La ficha informa; no garantiza financiamiento, plazos ni montos de recupero. Usa solo datos que puedas sustentar con documentos.</div>
+<div class="card">
+<label>Nombre del proyecto</label><input type="text" id="nombre" placeholder="Ej.: Mejoramiento del servicio de agua potable en Villa Esperanza (ejemplo ilustrativo)">
+<div class="row"><div><label>CUI</label><input type="text" id="cui" placeholder="Código único de inversiones"></div>
+<div><label>Sector</label><select id="sector"><option>Agua y saneamiento</option><option>Salud</option><option>Educación</option><option>Transporte y vías</option><option>Seguridad ciudadana</option><option>Agricultura y riego</option><option>Otro</option></select></div></div>
+<label>Ubicación (distrito, provincia, región)</label><input type="text" id="ubic" placeholder="Distrito de Villa Esperanza (ejemplo ilustrativo)">
+<label>Brecha que atiende (con fuente y año)</label><textarea id="brecha" placeholder="Qué falta hoy y cómo lo sabes"></textarea>
+<div class="row"><div><label>Beneficiarios (número y quiénes)</label><input type="text" id="benef" placeholder="Ej.: familias del centro poblado"></div>
+<div><label>Monto referencial (S/)</label><input type="text" id="monto" placeholder="Según expediente, sujeto a actualización"></div></div>
+<div class="row"><div><label>Estado del expediente</label><select id="exp"><option>Expediente técnico aprobado</option><option>Expediente técnico en elaboración</option><option>Solo perfil o ficha viable</option><option>Aún en idea</option></select></div>
+<div><label>Terreno / saneamiento físico-legal</label><select id="terr"><option>Terreno de libre disponibilidad</option><option>Saneamiento en trámite</option><option>Por definir</option><option>No aplica</option></select></div></div>
+<label>Sostenibilidad (quién opera y mantiene)</label><textarea id="sost" placeholder="Operador previsto, presupuesto de operación y mantenimiento"></textarea>
+<label>Contacto (cargo y medio)</label><input type="text" id="cont" placeholder="Ej.: Gerencia de Desarrollo, correo institucional">
+<div id="av"></div>
+<button class="btn" id="cp">Copiar ficha</button><button class="btn sec" id="rs">Borrar</button>
+</div>
+<div class="card"><h2>Vista previa</h2><pre class="out" id="out"></pre></div>
+<p class="foot">Casos ficticios (Municipalidad Distrital de Villa Esperanza, Empresa Andina S.A.A.). Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
+<script>
+(function () {
+  var F = ['nombre', 'cui', 'sector', 'ubic', 'brecha', 'benef', 'monto', 'exp', 'terr', 'sost', 'cont'];
+  var st = Store.get('ficha', {});
+  function el(i) { return document.getElementById(i); }
+  function val(k) { return (el(k).value || '').replace(/^\s+|\s+$/g, ''); }
+  function gen() {
+    var v = function (k, d) { return val(k) || d; };
+    return ['FICHA DE PROYECTO PARA INVERSIONISTAS',
+      'Proyecto: ' + v('nombre', '[completar]'),
+      'CUI: ' + v('cui', '[completar]') + ' | Sector: ' + val('sector'),
+      'Ubicación: ' + v('ubic', '[completar]'),
+      '',
+      'Problema que atiende: ' + v('brecha', '[completar con fuente y año]'),
+      'Beneficiarios: ' + v('benef', '[completar]'),
+      'Monto referencial: ' + (val('monto') ? 'S/ ' + val('monto').replace(/^S\/\s*/i, '') + ' (referencial, sujeto a actualización según el expediente)' : '[completar]'),
+      '',
+      'Estado del expediente: ' + val('exp'),
+      'Terreno: ' + val('terr'),
+      'Sostenibilidad (operación y mantenimiento): ' + v('sost', '[completar]'),
+      '',
+      'Contacto: ' + v('cont', '[completar]'),
+      '',
+      'Aviso: esta ficha es informativa. No constituye compromiso de financiamiento ni garantiza plazos o montos. Verificar la norma vigente y el expediente técnico aprobado.'].join('\n');
+  }
+  function avisos() {
+    var a = [], t = [val('brecha'), val('benef'), val('sost'), val('nombre')].join(' ');
+    if (/garantiz|asegurad|100 ?%|el mejor|[uú]nico en|sin riesgo|rentabilidad|ganancia segura|inmediat/i.test(t)) a.push('Hay palabras que suenan a promesa o exageración (garantizado, sin riesgo, 100 %...). Reemplázalas por datos sustentados.');
+    if (!val('brecha')) a.push('Falta la brecha con su fuente: es lo primero que lee una empresa.');
+    if (!val('cui')) a.push('Sin CUI la ficha pierde credibilidad; verifica el registro en el Banco de Inversiones.');
+    if (!val('sost')) a.push('Falta sostenibilidad: una empresa pregunta quién mantendrá la obra.');
+    if (/Aún en idea|Solo perfil/.test(val('exp'))) a.push('El expediente aún no está aprobado: dilo con claridad y no anuncies fechas.');
+    if (val('monto') && !/\d/.test(val('monto'))) a.push('El monto referencial debería llevar cifras del expediente.');
+    return a;
+  }
+  function upd() {
+    F.forEach(function (k) { st[k] = el(k).value; });
+    Store.set('ficha', st);
+    el('out').textContent = gen();
+    var av = avisos(), h = '';
+    av.forEach(function (x) { h += '<div class="warn">' + Tools.esc(x) + '</div>'; });
+    if (!av.length) h = '<div class="good">Sin avisos. Revisa igual cada dato contra el expediente.</div>';
+    el('av').innerHTML = h;
+  }
+  F.forEach(function (k) { if (st[k] != null) el(k).value = st[k]; el(k).oninput = upd; el(k).onchange = upd; });
+  el('cp').onclick = function () { Tools.copy(gen(), el('cp')); };
+  el('rs').onclick = function () { F.forEach(function (k) { if (el(k).tagName === 'SELECT') el(k).selectedIndex = 0; else el(k).value = ''; }); upd(); };
+  upd();
+})();
+</script></body></html>

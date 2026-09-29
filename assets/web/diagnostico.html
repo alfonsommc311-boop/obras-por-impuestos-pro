@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diagnóstico · Obras por Impuestos PRO</title>
+<link rel="stylesheet" href="assets/tools.css">
+<style>.qrow{padding:10px 0;border-bottom:1px solid var(--line)}.qrow .qt{margin:0 0 6px}.seg{display:flex;gap:6px}.seg button{flex:1;background:#0e2242;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 4px;font:inherit}.seg button.on-2{background:#14532d;border-color:#22c55e}.seg button.on-1{background:#5a4a12;border-color:#f2b134}.seg button.on-0{background:#5b1a1a;border-color:#ef4444}.sem{display:inline-block;width:14px;height:14px;border-radius:50%;vertical-align:-2px;margin-right:6px}.sem.v{background:#22c55e}.sem.a{background:#f2b134}.sem.r{background:#ef4444}.sem.n{background:#64748b}.big{font-size:1.2rem;font-weight:700}</style></head>
+<body class="acc-a6 tool">
+<div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
+<h1>🚦 ¿Está mi proyecto listo para OxI?</h1>
+<p class="sub">28 preguntas en 7 dimensiones. Responde Sí, Parcial o No con honestidad: el semáforo es una guía de trabajo, no una garantía. Se guarda en tu teléfono.</p>
+<div id="res"></div>
+<div id="app"></div>
+<button class="btn sec" id="reset">Borrar respuestas</button>
+<p class="warn">Este diagnóstico no asegura que una empresa financie el proyecto ni fija plazos o montos de recupero. Verificar la norma vigente y el expediente técnico aprobado.</p>
+<p class="foot">Casos de ejemplo ficticios (Municipalidad Distrital de Villa Esperanza, Empresa Andina S.A.A.). No reemplaza asesoría legal, tributaria ni técnica. Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
+<script>
+(function () {
+  var D = [
+    { id: 'idea', t: '1. Idea, CUI y viabilidad', q: [
+      ['¿El proyecto tiene CUI activo y figura en el Banco de Inversiones?', 'Solicitar o regularizar el registro en el Banco de Inversiones y confirmar el CUI vigente.', 'cui-y-banco-de-inversiones'],
+      ['¿Cuenta con viabilidad o aprobación vigente, según el tipo de inversión?', 'Verificar con la OPMI el estado de viabilidad y completar lo que falte antes de ofrecer el proyecto.', 'viabilidad-y-registro'],
+      ['¿La denominación y la naturaleza del proyecto coinciden con lo registrado en el Banco?', 'Alinear nombre, alcance y metas del expediente con el registro; si cambian, registrar la modificación.', 'cambios-y-modificaciones-en-el-banco'],
+      ['¿La idea nació de un problema medido (brecha, diagnóstico) y no de una obra deseada?', 'Documentar el problema y la población afectada con datos de fuente verificable.', 'idea-perfil-y-ficha'] ] },
+    { id: 'exp', t: '2. Expediente técnico', q: [
+      ['¿Existe expediente técnico aprobado, completo y firmado por los responsables?', 'Completar y aprobar el expediente técnico; sin él no se puede presentar un proyecto sólido.', 'el-expediente-tecnico'],
+      ['¿El presupuesto del expediente está actualizado a precios recientes?', 'Actualizar costos con la fecha de cotización y dejar el sustento en el expediente.', 'costos-y-actualizacion-del-expediente'],
+      ['¿Están resueltos los permisos y la disponibilidad física del terreno o de la zona de intervención?', 'Regularizar saneamiento físico-legal, libre disponibilidad y permisos antes de convocar.', 'el-expediente-tecnico'],
+      ['¿Los estudios base (suelos, topografía, hidrología u otros según el sector) son coherentes con las metas?', 'Revisar los estudios con el equipo técnico y corregir inconsistencias antes de la selección.', 'el-expediente-tecnico'] ] },
+    { id: 'brecha', t: '3. Brecha y priorización', q: [
+      ['¿Puedes sustentar la brecha con un indicador y una fuente (no solo con impresiones)?', 'Reunir el indicador de brecha y su fuente para sustentar la prioridad.', 'brecha-y-criterios-de-priorizacion'],
+      ['¿El proyecto está en la cartera priorizada de la entidad?', 'Incorporarlo mediante el procedimiento de priorización de la entidad y dejar el acta o documento.', 'brecha-y-criterios-de-priorizacion'],
+      ['¿Es una obra ancla: visible, acotada y con impacto que la población reconoce?', 'Elegir un proyecto acotado y de impacto claro para arrancar; dejar los complejos para después.', 'elegir-el-proyecto-ancla'],
+      ['¿Descartaste señales de que el proyecto no conviene llevarlo a OxI (alcance difuso, conflicto abierto)?', 'Revisar los criterios de exclusión y decidir con transparencia si conviene otra vía.', 'proyectos-que-no-conviene-llevar'] ] },
+    { id: 'cap', t: '4. Capacidad institucional', q: [
+      ['¿Están definidos y capacitados los equipos UF, UEI y OPMI?', 'Designar por resolución a los responsables y capacitarlos en su rol dentro del proceso.', 'uf-uei-y-opmi'],
+      ['¿La entidad tiene respaldo político formal (alcalde y concejo) para el proceso?', 'Gestionar el respaldo del concejo con un documento claro de lo que se compromete.', 'el-concejo-y-el-respaldo-politico'],
+      ['¿Conoces los límites de capacidad presupuestal y de endeudamiento aplicables?', 'Consultar límites y capacidad con el equipo de presupuesto y verificar la norma vigente.', 'capacidad-presupuestal-y-limites'],
+      ['¿Hay un responsable con dedicación real y un plan para que el proceso sobreviva a un cambio de gestión?', 'Documentar el expediente del proceso y formalizar responsables para dar continuidad.', 'caso-cambio-de-gestion'] ] },
+    { id: 'fin', t: '5. Atractivo para el financista', q: [
+      ['¿Tienes una ficha comercial clara del proyecto (qué, dónde, cuánto de referencia, estado)?', 'Preparar la ficha del proyecto con la herramienta Ficha para inversionistas.', 'la-ficha-comercial-del-proyecto'],
+      ['¿Entiendes qué mira una empresa antes de interesarse (riesgo, claridad, capacidad de tributar)?', 'Estudiar los criterios de una empresa y ajustar el material a esas preguntas.', 'que-mira-una-empresa'],
+      ['¿Sabes en qué sectores y zonas hay empresas con impuesto a la renta que podrían aplicar?', 'Investigar el contexto tributario regional y sectorial sin dar por hecho ningún interés.', 'capacidad-de-pago-del-impuesto'],
+      ['¿El proyecto es de un sector que suele funcionar en OxI y tiene alcance acotado?', 'Contrastar el sector con los casos típicos y afinar el alcance.', 'sectores-tipicos'] ] },
+    { id: 'riesgo', t: '6. Riesgos', q: [
+      ['¿Tienes una matriz de riesgos (técnicos, sociales, legales, climáticos) con responsable?', 'Elaborar la matriz de riesgos y asignar responsable y respuesta a cada uno.', 'riesgos-desde-el-lado-del-financista'],
+      ['¿Hay riesgo social identificado y un plan de relación con la comunidad?', 'Diseñar el plan de comunicación y diálogo con vecinos y autoridades locales.', 'seguridad-social-y-ambiente'],
+      ['¿Anticipas causas típicas de paralización y tienes medidas para evitarlas?', 'Revisar las causas comunes de paralización y preparar medidas de prevención.', 'paralizaciones-y-como-evitarlas'],
+      ['¿Revisaste los errores que suelen hundir un proyecto OxI y ninguno aplica al tuyo?', 'Contrastar tu proyecto con la lista de errores y corregir los que apliquen.', 'errores-que-matan-un-proyecto'] ] },
+    { id: 'sost', t: '7. Sostenibilidad', q: [
+      ['¿Está definido quién operará y mantendrá la obra cuando se entregue?', 'Definir el operador y formalizar la transferencia y sus responsabilidades.', 'transferencia-al-operador'],
+      ['¿Hay presupuesto previsto para operación y mantenimiento en los años siguientes?', 'Calcular el costo anual de operar y mantener y programarlo en el presupuesto.', 'presupuesto-de-mantenimiento'],
+      ['¿Existe un plan de operación y mantenimiento por escrito?', 'Redactar el plan de operación y mantenimiento con tareas, frecuencia y responsables.', 'operacion-y-mantenimiento'],
+      ['¿Definiste indicadores para medir el impacto después de entregada la obra?', 'Definir línea de base e indicadores de resultado para medir el impacto.', 'medir-el-impacto'] ] }
+  ];
+  var st = Store.get('diag', {});
+  var NOM = ['No', 'Parcial', 'Sí'];
+  function ver(p) { return p >= 75 ? 'v' : (p >= 45 ? 'a' : 'r'); }
+  function txt(c) { return { v: 'Verde', a: 'Ámbar', r: 'Rojo', n: 'Sin datos' }[c]; }
+  function calc() {
+    var g = 0, gm = 0, gn = 0, dims = [], acc = [];
+    D.forEach(function (d, di) {
+      var s = 0, n = 0;
+      d.q.forEach(function (q, i) {
+        var v = st[d.id + i];
+        if (v === undefined || v === null) return;
+        n++; s += v;
+        if (v < 2) acc.push({ v: v, di: di, i: i, d: d, q: q });
+      });
+      dims.push({ d: d, n: n, p: n ? Math.round(100 * s / (2 * d.q.length)) : null, pa: n ? Math.round(100 * s / (2 * n)) : null });
+      g += s; gn += n;
+    });
+    gm = 2 * 28;
+    acc.sort(function (a, b) { return (a.v - b.v) || (a.di - b.di) || (a.i - b.i); });
+    return { g: g, gn: gn, p: Math.round(100 * g / gm), dims: dims, acc: acc.slice(0, 3) };
+  }
+  function draw() {
+    var r = calc(), h = '';
+    if (r.gn === 0) {
+      h = '<div class="card"><b>Aún sin respuestas.</b> Contesta las preguntas de abajo para ver tu semáforo.</div>';
+    } else {
+      var comp = r.gn < 28;
+      var gc = comp ? 'n' : ver(r.p);
+      h += '<div class="card"><div class="card-h"><span class="big"><i class="sem ' + gc + '"></i>' + (comp ? 'Respondidas ' + r.gn + ' de 28' : 'Semáforo global: ' + txt(gc)) + '</span><span class="lead">' + r.p + ' %</span></div><div class="bar"><i style="width:' + r.p + '%"></i></div>';
+      if (comp) h += '<div class="warn">El semáforo global se muestra cuando respondas las 28. Mientras tanto, mira el avance por dimensión.</div>';
+      else if (gc === 'v') h += '<div class="good">Buen nivel de preparación. Verifica la norma vigente y el expediente técnico aprobado; estar listo no asegura que una empresa financie.</div>';
+      else if (gc === 'a') h += '<div class="warn">Hay base, pero faltan piezas. Cierra primero las acciones prioritarias antes de acercarte a empresas.</div>';
+      else h += '<div class="warn">Aún no conviene salir a buscar financista: fortalece lo esencial y vuelve a medir.</div>';
+      h += '<table><tr><th>Dimensión</th><th>Semáforo</th><th>Avance</th></tr>';
+      r.dims.forEach(function (x) {
+        var c = x.n === 0 ? 'n' : (x.n < x.d.q.length ? 'n' : ver(x.p));
+        h += '<tr><td>' + x.d.t + '</td><td><i class="sem ' + c + '"></i>' + (x.n < x.d.q.length ? (x.n === 0 ? 'Sin datos' : 'Incompleta') : txt(c)) + '</td><td>' + (x.n ? x.p + ' %' : '-') + '</td></tr>';
+      });
+      h += '</table></div>';
+      if (r.acc.length) {
+        h += '<div class="card"><h2>Tus 3 acciones prioritarias</h2>';
+        r.acc.forEach(function (a, k) {
+          h += '<div class="qrow"><b>' + (k + 1) + '. ' + Tools.esc(a.q[1]) + '</b><br><span class="lead">Pregunta: ' + Tools.esc(a.q[0]) + ' (' + (a.v === 0 ? 'No' : 'Parcial') + ')</span><br><a href="lesson.html?l=' + a.q[2] + '">📖 Ver la lección</a></div>';
+        });
+        h += '</div>';
+      } else h += '<div class="good">No quedan preguntas en No o Parcial.</div>';
+    }
+    document.getElementById('res').innerHTML = h;
+  }
+  function build() {
+    var h = '';
+    D.forEach(function (d) {
+      h += '<div class="card"><h2>' + d.t + '</h2>';
+      d.q.forEach(function (q, i) {
+        var k = d.id + i, v = st[k];
+        h += '<div class="qrow"><p class="qt">' + Tools.esc(q[0]) + '</p><div class="seg">';
+        [2, 1, 0].forEach(function (o) {
+          h += '<button data-k="' + k + '" data-v="' + o + '" class="' + (v === o ? 'on-' + o : '') + '">' + NOM[o] + '</button>';
+        });
+        h += '</div></div>';
+      });
+      h += '</div>';
+    });
+    var a = document.getElementById('app'); a.innerHTML = h;
+    var bs = a.getElementsByTagName('button');
+    for (var i = 0; i < bs.length; i++) (function (b) {
+      b.onclick = function () {
+        var k = b.getAttribute('data-k'), v = parseInt(b.getAttribute('data-v'), 10);
+        st[k] = v; Store.set('diag', st);
+        var sib = b.parentNode.getElementsByTagName('button');
+        for (var j = 0; j < sib.length; j++) sib[j].className = '';
+        b.className = 'on-' + v; draw();
+      };
+    })(bs[i]);
+  }
+  document.getElementById('reset').onclick = function () { st = {}; Store.set('diag', st); build(); draw(); };
+  build(); draw();
+})();
+</script></body></html>
