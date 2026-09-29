@@ -51,3 +51,6 @@ app.*.map.json
 
 # Fuentes propias: nunca al repo público
 /_fuentes/
+
+# Descargas generadas
+*.zip
