@@ -1,0 +1,34 @@
+Lesson.start({
+  id: 'recepcion-de-obra', area: 'Recepción, liquidación y certificados', areaIcon: '🧾', icon: '🎁',
+  title: 'Recepción de obra', subtitle: 'El momento en que la entidad dice «recibo» y se abre el camino al certificado',
+  norma: 'Recepción conforme del comité, con observaciones subsanadas y acta firmada; detalle según el convenio, el expediente técnico aprobado y el reglamento vigente (DS 038-2026-EF): verificar la norma vigente.',
+  intro: '<p>Cuando la empresa privada termina de ejecutar la intervención, la entidad pública debe verificar que lo construido corresponde a lo pactado. A ese acto se le llama <b>recepción</b>. No es un trámite de forma: es el punto en que el Estado acepta lo entregado y, en la práctica, se activan los pasos posteriores (liquidación y certificados).</p><p>Entender bien la recepción evita dos errores caros: recibir con defectos ocultos, o retrasar sin justificación una obra ya terminada. Esta lección explica el flujo general; los plazos, integrantes y formatos exactos se verifican en el convenio, el expediente técnico aprobado y el reglamento vigente.</p>',
+  sections: [
+    { h: '¿Qué es y por qué importa?', html: '<p>La recepción es la verificación formal de que la intervención ejecutada cumple el expediente técnico aprobado y las condiciones del convenio. Importa por tres razones:</p><ul><li>Fija la fecha desde la cual la entidad asume el bien y su uso.</li><li>Deja constancia de qué se entregó y en qué estado.</li><li>Es requisito previo para cerrar cuentas (liquidación) y para sustentar lo que se reconoce a la empresa.</li></ul><p>Regla práctica: <span class="hl">lo que no queda documentado en la recepción, después es difícil de reclamar</span>.</p>' },
+    { h: 'El comité de recepción', html: '<p>En términos generales, la entidad designa un <b>comité de recepción</b> que verifica en campo. Lo habitual es que participen representantes de la entidad y personal con capacidad técnica; también suelen intervenir el supervisor y la empresa ejecutora para aclarar puntos.</p><p>Quién integra el comité, cómo se designa y en qué plazo debe actuar lo define la norma vigente y el convenio: <b>verificar la norma vigente y el expediente técnico aprobado</b>. Un comité mal conformado puede invalidar el acto y demorar todo el cierre.</p>' },
+    { h: 'Verificación, observaciones y subsanación', html: '<p>El comité contrasta lo construido con planos, especificaciones, metrados y pruebas exigidas. Si todo está conforme, se recibe. Si hay defectos, se formulan <b>observaciones</b> por escrito y se otorga un plazo para <b>subsanarlas</b>.</p><ol><li>Inspección y pruebas en obra.</li><li>Pliego de observaciones (claro, concreto, sustentado).</li><li>Subsanación por la empresa ejecutora, bajo control del supervisor.</li><li>Nueva verificación de lo observado.</li></ol><p>Para la entidad: observar con precisión, no de forma genérica. Para la empresa: documentar cada subsanación con fotos, protocolos y actas de conformidad del supervisor.</p>' },
+    { h: 'El acta de recepción', html: '<p>Cuando no quedan observaciones pendientes se firma el <b>acta de recepción</b>. Debe reflejar la fecha, los asistentes, el estado de la intervención, las observaciones que hubo y cómo se levantaron.</p><table><tr><th>Situación</th><th>Efecto práctico</th></tr><tr><td>Recepción conforme</td><td>Se avanza a la liquidación y al trámite del certificado</td></tr><tr><td>Recepción con observaciones</td><td>Se detiene el avance hasta subsanar</td></tr><tr><td>Sin comité o sin acta válida</td><td>El cierre queda expuesto a cuestionamientos</td></tr></table>' },
+    { h: 'Errores frecuentes y buenas prácticas', html: '<ul><li>Recibir sin pruebas de funcionamiento (agua, electricidad, equipos).</li><li>No archivar el cuaderno de obra, las valorizaciones y los protocolos.</li><li>Firmar el acta sin haber resuelto una discrepancia técnica.</li><li>Dejar vencer plazos internos por falta de coordinación entre áreas.</li></ul><p>Consejo: anticipa la recepción desde el avance de obra con visitas conjuntas. Para el detalle contractual, la app hermana <b>Legal Obra PRO</b> profundiza; esta lección no reemplaza asesoría legal ni técnica.</p>' }
+  ],
+  keypoints: [
+    'La recepción es la verificación formal de que lo ejecutado cumple el expediente técnico aprobado y el convenio.',
+    'La conduce un comité de recepción; su composición y plazos se verifican en la norma vigente y el convenio.',
+    'Las observaciones se formulan por escrito y la empresa debe subsanarlas antes de recibir.',
+    'El acta de recepción deja constancia del estado de la intervención y de lo que se levantó.',
+    'La recepción conforme habilita la liquidación y el trámite posterior del certificado.',
+    'Lo que no se documenta en la recepción es difícil de reclamar después.'
+  ],
+  flashcards: [
+    { q: '¿Qué es la recepción de obra?', a: 'La verificación formal por la entidad de que lo ejecutado cumple el expediente técnico aprobado y el convenio.' },
+    { q: '¿Quién verifica la obra en la recepción?', a: 'Un comité de recepción designado por la entidad; su composición exacta se verifica en la norma vigente y el convenio.' },
+    { q: '¿Qué pasa si el comité encuentra defectos?', a: 'Formula observaciones por escrito y otorga plazo para subsanarlas antes de recibir.' },
+    { q: '¿Qué documento cierra la recepción?', a: 'El acta de recepción, con fecha, asistentes, estado de la intervención y observaciones levantadas.' },
+    { q: '¿Qué viene después de una recepción conforme?', a: 'La liquidación y el trámite de los certificados.' }
+  ],
+  quiz: [
+    { q: '¿Cuál es el propósito central de la recepción?', opts: ['Ampliar el plazo de ejecución', 'Verificar que lo ejecutado cumple lo pactado y dejar constancia', 'Emitir automáticamente el certificado'], correct: 1, why: 'La recepción verifica conformidad con el expediente técnico y el convenio; no emite certificados por sí sola.' },
+    { q: 'Si el comité detecta defectos, ¿qué corresponde?', opts: ['Observar por escrito y otorgar plazo de subsanación', 'Recibir igual y reclamar después', 'Anular el convenio de inmediato'], correct: 0, why: 'El camino ordinario es observar, subsanar y volver a verificar antes de firmar el acta.' },
+    { q: '¿Qué conviene hacer respecto de los plazos y la composición del comité?', opts: ['Suponer que son iguales en todo proyecto', 'Verificar la norma vigente, el convenio y el expediente técnico aprobado', 'Dejar que lo decida la empresa'], correct: 1, why: 'Estos detalles no se asumen: dependen del reglamento vigente y del convenio.' },
+    { q: '¿Qué documento debe reflejar cómo se levantaron las observaciones?', opts: ['El acta de recepción', 'La declaración jurada anual', 'El certificado'], correct: 0, why: 'El acta deja registro de asistentes, estado y observaciones subsanadas.' }
+  ]
+});

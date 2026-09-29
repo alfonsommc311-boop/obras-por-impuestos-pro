@@ -1,0 +1,40 @@
+Lesson.start({
+  id: 'inicio-de-obra', area: 'Ejecución de obra', areaIcon: '🏗️', icon: '🚩',
+  title: 'Inicio de obra',
+  subtitle: 'Una obra que arranca sin sus condiciones previas nace con una paralización en la mochila.',
+  norma: 'Principio: no se inicia lo que no está listo; condiciones y comunicaciones según el convenio, el expediente técnico aprobado y el reglamento vigente (DS 038-2026-EF); verificar la norma vigente y el expediente técnico aprobado.',
+  intro: '<p>El <b>inicio de obra</b> no es el día en que llega la primera maquinaria: es el momento en que se cumplen las condiciones para que el trabajo pueda avanzar sin interrupciones y con respaldo documental. En Obras por Impuestos (Ley 29230, con el reglamento DS 038-2026-EF vigente desde el 14/03/2026) intervienen la Entidad, la empresa privada que financia, la empresa ejecutora y la supervisión. Si una de las condiciones falla, los retrasos posteriores se discuten como culpa de alguien, y eso afecta plazos, costos y el monto que finalmente se reconoce.</p>',
+  sections: [
+    { h: 'Por qué el inicio es el punto más barato para corregir',
+      html: '<p>Un problema descubierto antes de abrir zanja se resuelve con una carta o una reunión. El mismo problema descubierto con la cuadrilla contratada se resuelve con mayores gastos generales, discusiones sobre quién tuvo la responsabilidad y, a veces, una paralización.</p><ul><li>Cada día de obra detenida sigue costando personal, alquileres y supervisión.</li><li>Lo que no quedó documentado al inicio se discute sin pruebas después.</li></ul>' },
+    { h: 'Las cuatro condiciones que conviene revisar',
+      html: '<table><tr><th>Condición</th><th>Qué se verifica</th><th>Por qué importa</th></tr><tr><td>Terreno libre</td><td>Que el área de trabajo esté disponible, sin ocupantes, interferencias ni conflictos de posesión, con la documentación de saneamiento que exija el expediente</td><td>Sin frente de trabajo no hay avance que medir ni valorizar</td></tr><tr><td>Expediente técnico</td><td>Que esté aprobado, completo y coherente con el terreno real (planos, metrados, estudios de suelos, licencias y autorizaciones)</td><td>Las inconsistencias se convierten luego en adicionales y ampliaciones de plazo</td></tr><tr><td>Garantías</td><td>Que las garantías exigidas por el convenio y la norma estén presentadas y vigentes</td><td>Su forma, monto y plazo son parte de lo que se debe verificar en el texto vigente</td></tr><tr><td>Comunicaciones</td><td>Que las partes hayan designado por escrito a sus representantes, residente, supervisor y canales de comunicación</td><td>Evita que una notificación importante se pierda por no tener destinatario</td></tr></table><p>Los montos, porcentajes y plazos de garantías no se dan por sabidos: verificar la norma vigente y el expediente técnico aprobado.</p>' },
+    { h: 'Documentos que abren la carpeta de obra',
+      html: '<p>Antes de empezar conviene tener a mano, ordenados y con cargo de recepción:</p><ul><li>El convenio y sus anexos, con las obligaciones de cada parte.</li><li>El expediente técnico aprobado y la constancia de que es el mismo que se va a construir.</li><li>La designación del residente de obra y del supervisor, con sus datos de contacto.</li><li>El cronograma de ejecución y el calendario de avance, que servirán de referencia para valorizaciones y plazos.</li><li>Las autorizaciones y permisos que dependan de terceros.</li><li>Un acta de entrega del terreno o constatación del estado del área, con fotografías y fecha.</li></ul>' },
+    { h: 'Comunicaciones: quién avisa a quién',
+      html: '<p>Cada parte debe saber a quién dirigir cada comunicación y por qué medio queda constancia. Lo que no consta por escrito, en la práctica no ocurrió.</p><ol><li>Se designan representantes de la Entidad, de la empresa privada, de la ejecutora y de la supervisión.</li><li>Se acuerda el canal formal (cartas, correos institucionales, plataforma o cuaderno de obra, según lo que exija el convenio).</li><li>Se registra el inicio en el cuaderno de obra (ver la lección «El cuaderno de obra»).</li></ol><p>Si el marco normativo exige comunicar el inicio a alguna entidad, se cumple en la forma que fije la norma vigente: no la reemplaces con un aviso informal.</p>' },
+    { h: 'Caso ficticio: Villa Esperanza',
+      html: '<p>La Municipalidad Distrital de Villa Esperanza y la Empresa Andina S.A.A. acordaron una obra de mejoramiento vial. Al revisar el terreno, la supervisión encontró un tramo con puestos comerciales instalados. La Entidad aún no había coordinado su reubicación.</p><p>En lugar de iniciar en todo el frente, se anotó la observación, se pidió a la Entidad un cronograma de liberación y se comenzó donde el terreno estaba libre. Quedó constancia escrita de que el retraso del tramo tenía una causa ajena al ejecutor. Ese registro es el que después sustenta una eventual ampliación de plazo.</p><p>Para revisar contratos y cartas con lenguaje jurídico, puedes apoyarte en Legal Obra PRO; esta lección no lo duplica.</p>' }
+  ],
+  keypoints: [
+    'El inicio de obra exige condiciones previas: terreno libre, expediente aprobado, garantías y comunicaciones designadas.',
+    'Un problema detectado antes de iniciar es mucho más barato de resolver que uno detectado con la obra en marcha.',
+    'Montos, plazos y formas de las garantías se verifican en la norma vigente y el convenio, no se suponen.',
+    'Todo lo comunicado y entregado debe constar por escrito, con fecha y cargo de recepción.',
+    'Si solo parte del terreno está libre, se documenta la limitación y se inicia donde sí se puede, sin ocultar el problema.',
+    'El expediente técnico debe coincidir con el terreno real: las diferencias generan adicionales y ampliaciones.'
+  ],
+  flashcards: [
+    { q: '¿Cuáles son las cuatro condiciones clave para iniciar una obra?', a: 'Terreno libre, expediente técnico aprobado, garantías vigentes y comunicaciones designadas por escrito.' },
+    { q: '¿Por qué se documenta el estado del terreno al inicio?', a: 'Porque sirve de prueba si luego hay discusión sobre atrasos, interferencias o responsabilidades.' },
+    { q: '¿Se puede dar por sabido el monto de las garantías?', a: 'No: hay que verificar la norma vigente, el convenio y el expediente técnico aprobado.' },
+    { q: '¿Qué hacer si solo parte del terreno está liberado?', a: 'Dejar constancia escrita, pedir cronograma de liberación y avanzar solo donde el frente está disponible.' },
+    { q: '¿Qué reglamento rige hoy para OxI?', a: 'El DS 038-2026-EF, vigente desde el 14/03/2026, que derogó al DS 210-2022-EF y al DS 011-2024-EF.' }
+  ],
+  quiz: [
+    { q: 'Al llegar a obra se descubre que parte del terreno está ocupada. ¿Qué es lo más prudente?', opts: ['Iniciar igual en todo el frente para no perder tiempo', 'Documentar la situación, pedir a la Entidad un cronograma de liberación e iniciar donde el terreno esté libre', 'Esperar en silencio a que se resuelva sola'], correct: 1, why: 'La constancia escrita protege al ejecutor y permite avanzar sin ocultar el problema.' },
+    { q: '¿Por qué importa que el expediente técnico coincida con el terreno real?', opts: ['Porque las diferencias suelen terminar en adicionales, ampliaciones y discusiones', 'Porque así se evita la supervisión', 'Porque solo importa para la liquidación final'], correct: 0, why: 'Las inconsistencias entre papel y terreno son una fuente frecuente de cambios de costo y plazo.' },
+    { q: 'Sobre los montos y plazos de las garantías en OxI, lo correcto es:', opts: ['Usar los de guías antiguas', 'Verificar la norma vigente, el convenio y el expediente técnico aprobado', 'Asumir que siempre son los mismos'], correct: 1, why: 'El reglamento cambió en 2026 y muchas guías previas describen el régimen derogado.' },
+    { q: '¿Qué valor tiene una comunicación informal (solo verbal) sobre el inicio?', opts: ['El mismo que una carta', 'Ninguno, porque siempre es ilegal', 'Es difícil de probar; conviene dejar constancia escrita'], correct: 2, why: 'Lo que no consta por escrito se discute después sin pruebas.' }
+  ]
+});
