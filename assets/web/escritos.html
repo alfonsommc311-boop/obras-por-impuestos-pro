@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Escritos · Obras por Impuestos PRO</title>
+<link rel="stylesheet" href="assets/tools.css"></head>
+<body class="acc-a4 tool">
+<div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
+<h1>✉️ Plantillas de escritos</h1>
+<p class="sub">Completa los campos, revisa el texto y cópialo. Los datos se guardan solo en tu dispositivo.</p>
+<div class="warn"><b>Aviso de revisión legal.</b> Son modelos orientativos, no un formato oficial. Antes de firmar o enviar, que los revise el área legal de la entidad y verificar la norma vigente y el expediente técnico aprobado.</div>
+<div class="card">
+  <h2>Datos comunes</h2>
+  <label>Entidad</label><input type="text" id="f_ent" value="Municipalidad Distrital de Villa Esperanza">
+  <label>Proyecto o intervención</label><input type="text" id="f_pry" value="Mejoramiento del servicio de agua potable (ejemplo ilustrativo)">
+  <div class="row"><div><label>Código CUI</label><input type="text" id="f_cui" placeholder="[CUI]"></div><div><label>Fecha</label><input type="text" id="f_fec" placeholder="dd/mm/aaaa"></div></div>
+  <div class="row"><div><label>Empresa destinataria</label><input type="text" id="f_emp" value="Empresa Andina S.A.A."></div><div><label>Firma (cargo y nombre)</label><input type="text" id="f_fir" placeholder="Alcalde / Gerente municipal"></div></div>
+  <label>Plantilla</label>
+  <select id="sel"></select>
+  <label>Dato específico (hito, valorización, monto o detalle según la plantilla)</label>
+  <textarea id="f_det" placeholder="Ej.: Hito 2, valorización N.° 3, periodo, observaciones…"></textarea>
+</div>
+<div class="card"><h2 id="tt"></h2><p class="lead" id="tn"></p><pre class="out" id="out"></pre>
+<button class="btn" id="cp">Copiar texto</button></div>
+<p class="foot">Material orientativo, no reemplaza asesoría legal, tributaria ni técnica. Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
+<script>
+(function () {
+  var AV = '\n\n[Borrador orientativo: revisión legal pendiente. Verificar la norma vigente y el expediente técnico aprobado.]';
+  var T = [
+    { id: 'invit', t: 'Carta de invitación a empresas', n: 'Invita a empresas a conocer el proyecto. No promete financiamiento ni plazos.',
+      b: '{ENT}\n{FEC}\n\nSeñores\n{EMP}\nPresente.-\n\nAsunto: Invitación a conocer la intervención «{PRY}» (CUI {CUI})\n\nEs grato dirigirme a ustedes para informarles que {ENT} tiene priorizada la intervención «{PRY}», que podría ejecutarse bajo el mecanismo de Obras por Impuestos regulado por la Ley 29230 y su reglamento vigente.\n\nLe invitamos a conocer el expediente técnico y la información disponible, y a manifestar por escrito su interés en participar. Esta invitación no constituye compromiso de adjudicación ni de financiamiento por ninguna de las partes, y todo el proceso se sujetará a la normativa aplicable.\n\nQuedamos atentos a sus consultas.\n\nAtentamente,\n\n{FIR}\n{ENT}' },
+    { id: 'resp', t: 'Respuesta a expresión de interés', n: 'Agradece y ordena los siguientes pasos sin comprometer la selección.',
+      b: '{ENT}\n{FEC}\n\nSeñores\n{EMP}\nPresente.-\n\nAsunto: Respuesta a su expresión de interés sobre «{PRY}» (CUI {CUI})\n\nAgradecemos su comunicación de interés en la intervención «{PRY}». Le informamos que hemos registrado su manifestación y que el proceso se conducirá conforme a la normativa vigente, con igualdad de trato para todos los interesados.\n\nLe remitimos la información pública disponible y le indicamos que cualquier requisito adicional, plazo o etapa se comunicará por los canales que establezca la norma. {DET}\n\nEsta respuesta no genera derecho ni obligación de contratar.\n\nAtentamente,\n\n{FIR}\n{ENT}' },
+    { id: 'proi', t: 'Oficio a ProInversión solicitando asistencia técnica', n: 'Solicita orientación; el alcance exacto lo define la norma y ProInversión.',
+      b: '{ENT}\n{FEC}\n\nSeñor(a)\nDirector(a) competente de ProInversión\nPresente.-\n\nAsunto: Solicitud de asistencia técnica para la intervención «{PRY}» (CUI {CUI})\n\nMe dirijo a usted para solicitar la asistencia técnica de ProInversión en el desarrollo de la intervención «{PRY}», priorizada por {ENT} para su posible ejecución bajo Obras por Impuestos.\n\nSolicitamos que nos indique los requisitos, la documentación y los pasos para formalizar la solicitud según la norma vigente. {DET}\n\nAdjuntamos, de corresponder, la ficha del proyecto y el expediente técnico aprobado. Reiteramos nuestra disposición a coordinar una reunión de trabajo.\n\nAtentamente,\n\n{FIR}\n{ENT}' },
+    { id: 'acta', t: 'Acta de hito', n: 'Deja constancia de un hito alcanzado o de una reunión de seguimiento.',
+      b: 'ACTA DE HITO\n\nEntidad: {ENT}\nEmpresa: {EMP}\nProyecto: {PRY} (CUI {CUI})\nFecha: {FEC}\n\n1. Participantes:\n- [Nombre, cargo, representación]\n- [Nombre, cargo, representación]\n\n2. Hito o asunto tratado:\n{DET}\n\n3. Verificación realizada (contrastada con el expediente técnico aprobado):\n[Describir lo verificado en campo y los documentos revisados]\n\n4. Observaciones:\n[Detallar, con responsable y fecha de levantamiento]\n\n5. Acuerdos:\n[Detallar]\n\nEn señal de conformidad con lo consignado, firman los participantes.\n\n________________  ________________\n{FIR}            [Representante de la empresa]' },
+    { id: 'conf', t: 'Conformidad de valorización', n: 'Conformidad o conformidad parcial, según la verificación del avance.',
+      b: '{ENT}\n{FEC}\n\nSeñores\n{EMP}\nPresente.-\n\nAsunto: Conformidad de la valorización de «{PRY}» (CUI {CUI})\n\nHabiendo revisado la valorización presentada ({DET}), el informe de supervisión y el avance verificado en campo contra el expediente técnico aprobado, se comunica lo siguiente:\n\n[ ] Se otorga conformidad.\n[ ] Se otorga conformidad parcial, con las observaciones que se detallan a continuación:\n[Detallar partidas, metrados o documentos observados]\n\nLa conformidad se refiere al periodo indicado y no implica renuncia a las verificaciones posteriores, la liquidación ni los controles que correspondan según la normativa vigente.\n\nAtentamente,\n\n{FIR}\n{ENT}' },
+    { id: 'pob', t: 'Comunicado a la población', n: 'Lenguaje claro para vecinos: qué se hará, cómo se informará y dónde consultar.',
+      b: 'COMUNICADO A LA POBLACIÓN\n\n{ENT} informa a los vecinos y vecinas que se viene desarrollando la intervención «{PRY}».\n\nFecha: {FEC}\n\n¿Qué se está haciendo?\n{DET}\n\n¿Qué puede afectar a los vecinos?\n[Indicar molestias, desvíos o cortes, con fechas tentativas]\n\n¿Dónde consultar o presentar sugerencias y quejas?\n[Oficina, teléfono, correo, horario]\n\nMantendremos informada a la población sobre el avance. Las fechas pueden ajustarse por razones técnicas o climáticas.\n\n{FIR}\n{ENT}' }
+  ];
+  var ids = ['f_ent', 'f_pry', 'f_cui', 'f_fec', 'f_emp', 'f_fir', 'f_det'];
+  var saved = Store.get('esc', {});
+  var sel = document.getElementById('sel');
+  T.forEach(function (t, i) { var o = document.createElement('option'); o.value = i; o.textContent = t.t; sel.appendChild(o); });
+  ids.forEach(function (k) { if (saved[k] != null) document.getElementById(k).value = saved[k]; });
+  if (saved.sel != null && T[saved.sel]) sel.value = saved.sel;
+  function v(k) { return document.getElementById(k).value.replace(/^\s+|\s+$/g, ''); }
+  function render() {
+    var t = T[+sel.value] || T[0];
+    var map = { ENT: v('f_ent') || '[Entidad]', PRY: v('f_pry') || '[Proyecto]', CUI: v('f_cui') || '[CUI]', FEC: v('f_fec') || '[fecha]', EMP: v('f_emp') || '[Empresa]', FIR: v('f_fir') || '[Cargo y nombre]', DET: v('f_det') || '[detalle]' };
+    var s = t.b.replace(/\{(ENT|PRY|CUI|FEC|EMP|FIR|DET)\}/g, function (m, k) { return map[k]; }) + AV;
+    document.getElementById('tt').textContent = t.t;
+    document.getElementById('tn').textContent = t.n;
+    document.getElementById('out').textContent = s;
+    var o = { sel: sel.value }; ids.forEach(function (k) { o[k] = document.getElementById(k).value; });
+    Store.set('esc', o);
+    return s;
+  }
+  ids.forEach(function (k) { document.getElementById(k).oninput = render; });
+  sel.onchange = render;
+  document.getElementById('cp').onclick = function () { Tools.copy(render(), this); };
+  render();
+})();
+</script></body></html>
