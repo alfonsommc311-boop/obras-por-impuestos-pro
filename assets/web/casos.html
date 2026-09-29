@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Casos · Obras por Impuestos PRO</title>
+<link rel="stylesheet" href="assets/tools.css"></head>
+<body class="acc-a6 tool">
+<div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
+<h1>📚 Banco de casos</h1>
+<p class="sub">Ocho casos breves para aprender de errores comunes. Filtra por sector.</p>
+<div class="warn"><b>Casos ficticios.</b> Todos están inventados con fines didácticos (Municipalidad Distrital de Villa Esperanza, Empresa Andina S.A.A.). No describen proyectos reales. Verificar la norma vigente y el expediente técnico aprobado.</div>
+<div class="toc" id="fl"></div>
+<div id="app"></div>
+<p class="foot">Casos ficticios, no reemplazan asesoría legal, tributaria ni técnica. Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
+<script>
+(function () {
+  var S = { todos: 'Todos', agua: 'Agua', salud: 'Salud', educacion: 'Educación', vias: 'Vías', seguridad: 'Seguridad' };
+  var C = [
+    { s: 'agua', t: 'Reservorio sin conexiones domiciliarias', p: 'Villa Esperanza priorizó un reservorio y una línea de conducción de agua potable con Empresa Andina S.A.A.',
+      h: 'Se ejecutó el reservorio y la línea de conducción conforme al expediente técnico.', f: 'El expediente no incluía las conexiones domiciliarias ni la conexión a la red existente, por lo que el agua no llegaba a las viviendas.',
+      l: 'Revisar con la UF y la UEI que el proyecto entregue el servicio completo, no solo una parte de la infraestructura.' },
+    { s: 'agua', t: 'Operación sin presupuesto', p: 'Una planta de tratamiento de agua en Villa Esperanza terminó a tiempo.',
+      h: 'Se recepcionó la planta y se hizo la entrega formal.', f: 'La municipalidad no había previsto personal ni insumos; la planta dejó de operar a los pocos meses.',
+      l: 'Definir antes del convenio quién opera y mantiene, y con qué recursos. Verificar si la norma vigente permite financiar operación y mantenimiento.' },
+    { s: 'salud', t: 'Posta con equipamiento pendiente', p: 'Se construyó un puesto de salud para la población rural de Villa Esperanza.',
+      h: 'La obra civil se concluyó y se recibió.', f: 'El equipamiento y el personal dependían de otro sector y llegaron tarde; el local estuvo cerrado.',
+      l: 'Coordinar desde el inicio con el sector salud el equipamiento y la dotación de personal. Sin esa coordinación, la obra no presta servicio.' },
+    { s: 'salud', t: 'Adicional sin sustento', p: 'La ampliación de un centro de salud sufrió cambios de diseño a mitad de obra.',
+      h: 'Se pidió un adicional verbalmente y se avanzó con la partida.', f: 'No hubo aprobación previa por escrito; la valorización fue observada y hubo conflicto entre Empresa Andina S.A.A. y la entidad.',
+      l: 'Todo adicional o deductivo se tramita por escrito, con sustento técnico, antes de ejecutarse. Apoyarse en Adicional y Deductivo.' },
+    { s: 'educacion', t: 'Terreno sin saneamiento', p: 'Villa Esperanza priorizó una nueva institución educativa.',
+      h: 'Se preparó el expediente y se inició el proceso.', f: 'El terreno no tenía la titularidad clara y hubo un reclamo de un tercero que paralizó el inicio.',
+      l: 'Sanear el terreno y acreditar la disponibilidad antes de convocar. Es un ítem crítico de la lista «Expediente y viabilidad listos».' },
+    { s: 'educacion', t: 'Comunicación tardía a la comunidad', p: 'Se rehabilitó un colegio mientras las clases seguían.',
+      h: 'La obra avanzó según el cronograma.', f: 'No se informó a padres ni docentes sobre las molestias y desvíos; hubo quejas y protestas.',
+      l: 'Un comunicado claro y un canal de quejas desde el primer día reducen conflictos. Ver la plantilla de comunicado a la población.' },
+    { s: 'vias', t: 'Vía sin drenaje', p: 'Se pavimentó una vía de acceso en Villa Esperanza.',
+      h: 'Se ejecutó el pavimento conforme al expediente.', f: 'El diseño no consideró bien el drenaje pluvial; con las primeras lluvias aparecieron daños.',
+      l: 'Revisar el expediente técnico con especialistas independientes antes del convenio y exigir control de calidad durante la obra.' },
+    { s: 'seguridad', t: 'Comisaría sin mantenimiento', p: 'Se construyó una comisaría con apoyo de Empresa Andina S.A.A.',
+      h: 'Se recepcionó la obra con observaciones menores.', f: 'Las observaciones nunca se levantaron y no se previó el presupuesto de mantenimiento.',
+      l: 'Dejar en el acta responsables y fechas para cada observación, y planificar el mantenimiento desde el diseño.' }
+  ];
+  var cur = 'todos';
+  function draw() {
+    var fl = '';
+    Object.keys(S).forEach(function (k) { fl += '<a href="#" data-k="' + k + '"' + (k === cur ? ' style="border-color:var(--coral)"' : '') + '>' + S[k] + '</a>'; });
+    document.getElementById('fl').innerHTML = fl;
+    var h = '';
+    C.forEach(function (c) {
+      if (cur !== 'todos' && c.s !== cur) return;
+      h += '<div class="card"><div class="card-h"><h2>' + Tools.esc(c.t) + '</h2><span class="lead">' + S[c.s] + '</span></div>' +
+        '<p><b>Proyecto:</b> ' + Tools.esc(c.p) + '</p><p><b>Qué se hizo:</b> ' + Tools.esc(c.h) + '</p><p><b>Qué falló:</b> ' + Tools.esc(c.f) + '</p><div class="good"><b>Lección:</b> ' + Tools.esc(c.l) + '</div></div>';
+    });
+    document.getElementById('app').innerHTML = h || '<p class="lead">Sin casos.</p>';
+    var as = document.querySelectorAll('#fl a');
+    for (var i = 0; i < as.length; i++) (function (a) { a.onclick = function (e) { e.preventDefault(); cur = a.getAttribute('data-k'); draw(); }; })(as[i]);
+  }
+  draw();
+})();
+</script></body></html>
