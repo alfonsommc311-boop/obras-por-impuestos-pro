@@ -1,51 +1,63 @@
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Checklists · MiroFish PRO</title>
+<title>Checklists · Obras por Impuestos PRO</title>
 <link rel="stylesheet" href="assets/tools.css"></head>
-<body class="acc-a12 tool">
+<body class="acc-a3 tool">
 <div class="crumb"><a href="herramientas.html">← Herramientas</a></div>
-<h1>✅ Checklists de la simulación</h1>
-<p class="sub">Tres listas: antes de lanzar, en cada ronda y antes de entregar el informe. Se guardan en tu teléfono.</p>
+<h1>✅ Checklists del proyecto</h1>
+<p class="sub">Cuatro listas de ítems críticos, de la viabilidad a los certificados. Se guardan en tu dispositivo.</p>
+<div class="warn">Son listas de control genéricas: cada proyecto tiene requisitos propios. Verificar la norma vigente y el expediente técnico aprobado.</div>
 <div id="app"></div>
-<p class="foot">Ensayo, no profecía. Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
+<p class="foot">Material orientativo, no reemplaza asesoría legal, tributaria ni técnica. Normas solo por su nombre: verificar la norma vigente y el expediente técnico aprobado.</p>
 <script src="assets/catalog.js"></script><script src="assets/engine.js"></script><script src="assets/tools.js"></script>
 <script>
 (function () {
   var L = [
-    { id: 'antes', t: '1. Antes de lanzar', items: [
-      'El evento que dispara es UN hecho concreto e inyectable, con fecha.',
-      'El dossier común tiene los seis bloques y cada cifra trae su documento de origen.',
-      'Los puntos débiles visibles están escritos: sin ellos no hay conflicto.',
-      'Elegí de 3 a 6 actores; cada uno decide, puede bloquear o tiene información.',
-      'Cada perfil tiene los cinco campos y «lo que sabes y otros no» no está vacío.',
-      'Lo no verificado en los documentos reales está marcado como hipótesis de simulación.',
-      'Solo roles: nada de nombres de personas, DNI ni sueldos.',
-      'Decidí qué hará el orquestador (y qué marcaré «resultado simulado»).',
-      'El caso.json tiene actores, indicadores y plan de rondas.',
-      'Sé qué pregunta quiero responder y para qué decisión me servirá.'] },
-    { id: 'ronda', t: '2. En cada ronda', items: [
-      'La consigna trae rutas ABSOLUTAS y solo los archivos permitidos para ese actor.',
-      'La situación cuenta solo lo que ESE actor ve; nada de lo que no sabe.',
-      'La decisión central es concreta (qué entregas el día 12, no «qué haces»).',
-      'Formato exacto y tope de palabras; línea de indicadores con las mismas claves.',
-      'Lancé todos los actores de la ronda en un mismo mensaje, en segundo plano.',
-      'Revisé cada respuesta: ¿sigue en personaje, sin fabricar documentos ni artículos?',
-      'Detecté fugas: ¿citó algo que solo otro actor sabía?',
-      'Resolví con vista de dios: cronológico, fechado y con etiqueta de visibilidad.',
-      'Lo de terceros (ensayos, asesoría, clima) va marcado «resultado simulado».',
-      'Corrí armar_contextos y revisé que ningún actor activo quede sin novedades por error.'] },
-    { id: 'informe', t: '3. Antes de entregar el informe', items: [
-      'Responde en pocas líneas la pregunta simulada, sin vender predicción.',
-      'La cronología y el gráfico de indicadores están; los indicadores se presentan como juicios declarados.',
-      'Cada hallazgo indica qué actor lo vio y en qué ronda.',
-      'Las recomendaciones tienen plazo y responsable (esta semana, dos semanas, hacia el cierre).',
-      'Las limitaciones dicen: una sola corrida, supuestos del orquestador y resultados simulados.',
-      'No promete resultado de valorización, adicional, ampliación, arbitraje ni control.',
-      'Las normas van por su nombre, con «verificar la norma vigente y el expediente técnico aprobado».',
-      'Lleva la leyenda de documento interno: no se manda a la Entidad ni al contratista.',
-      'Anoté qué predijo cada actor para contrastarlo cuando ocurra.',
-      'Guardé la corrida y la lección aprendida para mi biblioteca de casos.'] }
+    { id: 'exp', t: '1. Expediente y viabilidad listos', items: [
+      'El proyecto está registrado en Invierte.pe con su CUI y figura como viable o aprobado según lo exige la norma vigente.',
+      'La intervención está en la cartera priorizada de la entidad.',
+      'El expediente técnico está completo, con planos, metrado, presupuesto y cronograma coherentes entre sí.',
+      'El terreno o la faja de intervención está saneado y la entidad puede acreditar su disponibilidad.',
+      'Las licencias, autorizaciones y certificaciones ambientales o sectoriales que apliquen están identificadas.',
+      'El costo está actualizado y la entidad sabe qué partidas cubre y cuáles no.',
+      'La UF y la UEI designadas tienen responsables con nombre, rol y respaldo del alcalde o titular.',
+      'Se revisó con la OPMI que no hay duplicidad ni cambios pendientes en la inversión.',
+      'La entidad definió quién operará y mantendrá la obra y con qué recursos.',
+      'Un asesor legal revisó la lista de requisitos contra la norma vigente.'] },
+    { id: 'conv', t: '2. Antes del convenio', items: [
+      'Se solicitó el Informe Previo a la Contraloría antes del proceso de selección y se conoce su resultado.',
+      'Las bases del proceso fueron revisadas por el área legal de la entidad.',
+      'Se verificó la trayectoria de la empresa y que no tenga impedimentos para contratar.',
+      'La empresa acreditó su capacidad de aplicar certificados; la entidad no asume ni promete esa capacidad.',
+      'El borrador del convenio de inversión define alcance, hitos y responsabilidades de cada parte.',
+      'Están definidas las garantías que exige la norma vigente, sin asumir montos de otro caso.',
+      'Se acordó cómo se elegirá y supervisará al ejecutor y al supervisor.',
+      'Están previstos el manejo de adicionales, deductivos y controversias.',
+      'La entidad sabe qué informar a ProInversión, al MEF y a la Contraloría, y cuándo.',
+      'El concejo o instancia que corresponda está informado y los acuerdos constan en actas.'] },
+    { id: 'eje', t: '3. Durante la ejecución', items: [
+      'El acta de inicio y la entrega de terreno están firmadas y fechadas.',
+      'Existe cuaderno de obra abierto y el residente y el supervisor lo llevan al día.',
+      'Cada valorización se contrasta con el avance físico en campo antes de conformarse.',
+      'Los adicionales y deductivos se tramitan por escrito y con sustento técnico antes de ejecutarlos.',
+      'El cronograma vigente se actualiza y se comunica cuando hay atrasos.',
+      'Se conservan informes de supervisión, ensayos y control de calidad.',
+      'La población recibe información periódica y hay un canal para quejas.',
+      'Se registran las actas de hito y los cambios acordados con la empresa.',
+      'Se atienden a tiempo las solicitudes de la Contraloría y de ProInversión.',
+      'Hay un archivo ordenado de correspondencia, fotos fechadas y actas.'] },
+    { id: 'rec', t: '4. Recepción, liquidación y certificados', items: [
+      'La empresa comunicó por escrito la culminación y se conformó el comité de recepción.',
+      'Se hizo la verificación en campo contra el expediente técnico aprobado y las observaciones constan en acta.',
+      'Las observaciones se levantaron o se dejó constancia del plazo y responsable.',
+      'El acta de recepción está firmada por las personas competentes.',
+      'La liquidación del convenio o de la obra se elaboró con los sustentos y se revisó su consistencia.',
+      'Los planos post-construcción y los manuales de operación están entregados.',
+      'Se verificó el procedimiento vigente para la emisión de los certificados y la documentación requerida.',
+      'La entidad conoce la obligación de operar y mantener la obra desde el día uno.',
+      'Se informó a la población la entrega de la obra y cómo usarla.',
+      'Se guardó la lección aprendida y el expediente completo de cierre.'] }
   ];
   var st = Store.get('chk', {});
   function draw() {
@@ -55,13 +67,15 @@
       h += '<div class="card"><div class="card-h"><h2>' + l.t + '</h2><span class="lead">' + ok + '/' + l.items.length + '</span></div><div class="bar"><i style="width:' + (100 * ok / l.items.length) + '%"></i></div>';
       l.items.forEach(function (t, i) {
         var k = l.id + i;
-        h += '<label class="chk' + (st[k] ? ' on' : '') + '"><input type="checkbox" data-k="' + k + '"' + (st[k] ? ' checked' : '') + '><span>' + t + '</span></label>';
+        h += '<label class="chk' + (st[k] ? ' on' : '') + '"><input type="checkbox" data-k="' + k + '"' + (st[k] ? ' checked' : '') + '><span>' + Tools.esc(t) + '</span></label>';
       });
       h += '<button class="btn sec" data-r="' + l.id + '">Reiniciar lista</button></div>';
     });
     document.getElementById('app').innerHTML = h;
-    document.querySelectorAll('input[data-k]').forEach(function (c) { c.onchange = function () { st[c.getAttribute('data-k')] = c.checked; Store.set('chk', st); draw(); }; });
-    document.querySelectorAll('button[data-r]').forEach(function (b) { b.onclick = function () { var id = b.getAttribute('data-r'); Object.keys(st).forEach(function (k) { if (k.indexOf(id) === 0) delete st[k]; }); Store.set('chk', st); draw(); }; });
+    var cs = document.querySelectorAll('input[data-k]'), i;
+    for (i = 0; i < cs.length; i++) (function (c) { c.onchange = function () { st[c.getAttribute('data-k')] = c.checked; Store.set('chk', st); draw(); }; })(cs[i]);
+    var bs = document.querySelectorAll('button[data-r]');
+    for (i = 0; i < bs.length; i++) (function (b) { b.onclick = function () { var id = b.getAttribute('data-r'); Object.keys(st).forEach(function (k) { if (k.indexOf(id) === 0) delete st[k]; }); Store.set('chk', st); draw(); }; })(bs[i]);
   }
   draw();
 })();

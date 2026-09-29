@@ -1,0 +1,34 @@
+Lesson.start({
+  id: 'hablar-con-la-gerencia-tributaria', area: 'Atraer al financista', areaIcon: '🧲', icon: '📞',
+  title: 'Hablar con la gerencia tributaria', subtitle: 'Su idioma son los números, los plazos y los riesgos: habla en él y la conversación avanza.', norma: 'Principio clave: la gerencia tributaria evalúa capacidad de aplicación y riesgo; las reglas de certificados (según reportes del reglamento vigente, hasta el 80 % de la deuda tributaria aplicable; verificar en el texto del DS 038-2026-EF) las interpreta su propio equipo.',
+  intro: '<p>La persona que decide si una obra cabe en la empresa suele ser la <b>gerencia tributaria o financiera</b>, no un gestor social. Su lenguaje es técnico y sus preguntas son concretas: cuánto, cuándo, con qué respaldo y con qué riesgo. Un alcalde que llega con relatos y sin datos tiene pocas posibilidades; uno que llega con datos claros y preguntas precisas genera confianza.</p><p>Verás cómo preparar la reunión, qué lenguaje usar y qué preguntas hacen avanzar la conversación, sin prometer financiamiento.</p>',
+  sections: [
+    { h: '1. Conoce con quién hablas', html: '<p>Antes de la reunión, averigua qué hace la empresa, en qué sectores opera y si ha participado antes en este tipo de proyectos. Prepara a alguien que pueda contestar en el momento sobre: expediente, terreno, cronograma y marco normativo. Si vas solo con lo político, la reunión será corta.</p><p>Tampoco te disfraces de tributarista: tu rol es presentar el proyecto con claridad, no interpretar el impuesto de la empresa.</p>' },
+    { h: '2. El lenguaje que se entiende', html: '<p>Habla de:</p><ul><li><b>Monto referencial</b> y su fecha, no «un presupuesto grande».</li><li><b>Estado técnico</b> con hechos: viabilidad, expediente aprobado, terreno saneado.</li><li><b>Hitos y plazos</b>, con sus supuestos.</li><li><b>Riesgos identificados</b> y cómo los gestionas.</li><li><b>Pasos formales</b> según la norma vigente, sin inventar atajos.</li></ul><p>Evita frases como «es un buen negocio para ustedes» o «no hay riesgo»: suenan a promesa y minan la credibilidad. Usa «según el expediente aprobado» y «según la norma vigente, a verificar».</p>' },
+    { h: '3. Preguntas que hacen avanzar', html: '<p>En lugar de preguntar «¿lo van a financiar?», haz preguntas que aclaran el camino:</p><ol><li>«¿Cuál es el rango de monto que suelen evaluar por proyecto?»</li><li>«¿Qué información necesitan ver para una primera evaluación?»</li><li>«¿Cuál es su horizonte para aplicar certificados en sus ejercicios?»</li><li>«¿Qué riesgos del proyecto les preocupan más?»</li><li>«¿Con qué equipo interno o asesores debemos coordinar?»</li><li>«¿Cuál sería un siguiente paso razonable y en qué plazo?»</li></ol><p>Cada respuesta te dice qué ajustar en la ficha, el alcance o la ruta.</p>' },
+    { h: '4. Tiempos y expectativas', html: '<p>Una gerencia tributaria tiene su propio calendario: cierres mensuales, declaraciones anuales, presupuesto del año. Respeta esos tiempos: enviar un correo urgente sin contexto genera rechazo. Pregunta cuándo revisan nuevas oportunidades y ofrece información antes de esa ventana. No presiones con fechas políticas.</p><p>Los plazos formales del proceso deben verificarse en el reglamento vigente y en los documentos de la convocatoria, no en promesas de las partes.</p>' },
+    { h: '5. Lo que no debes hacer', html: '<ul><li>Prometer financiamiento, beneficios, plazos o recupero.</li><li>Pedir «una respuesta hoy» para un compromiso que tomará meses.</li><li>Asumir que su interés equivale a un compromiso.</li><li>Ofrecer trato preferente que la norma no contempla.</li></ul><p>La conversación debe quedar registrada. Si surgen dudas jurídicas o tributarias, se derivan a las asesorías correspondientes de cada parte. Para el marco jurídico, Legal Obra PRO; para el ciclo del proyecto, Invierte Experto.</p>' },
+    { h: '6. Cierra con un compromiso pequeño', html: '<p>Al terminar, acuerda un paso concreto y pequeño: un envío de documentos, una llamada técnica, una visita al terreno. Enviar un correo de resumen con lo conversado, sin adornos, deja constancia y demuestra seriedad. Ese paso pequeño, repetido con cuidado, construye la relación; la decisión de participar seguirá siendo de la empresa.</p>' }
+  ],
+  keypoints: [
+    'La gerencia tributaria o financiera decide si la obra cabe; su lenguaje son cifras, plazos y riesgos.',
+    'Presenta el proyecto con hechos: monto con fecha, estado técnico, hitos y riesgos.',
+    'Haz preguntas que aclaran el camino, no «¿lo van a financiar?».',
+    'Respeta su calendario y no presiones con fechas políticas.',
+    'No prometas financiamiento, beneficios, plazos ni recupero; su interés no es un compromiso.',
+    'Cierra con un paso pequeño y deja constancia por escrito.'
+  ],
+  flashcards: [
+    { q: '¿Con qué lenguaje conviene hablar a la gerencia tributaria?', a: 'Con cifras y hechos: monto con fecha, estado técnico, hitos, riesgos y pasos formales.' },
+    { q: '¿Qué pregunta ayuda a avanzar en lugar de «¿lo financian?»', a: '«¿Qué información necesitan para una primera evaluación?»' },
+    { q: '¿Qué debe hacerse con su calendario?', a: 'Respetarlo y ofrecer información antes de su ventana de evaluación.' },
+    { q: '¿Qué no debes prometer nunca?', a: 'Financiamiento, plazos de recupero, beneficios tributarios ni trato preferente.' },
+    { q: '¿Cómo se cierra una reunión?', a: 'Con un paso pequeño y concreto y un correo de resumen que deje constancia.' }
+  ],
+  quiz: [
+    { q: 'Al llegar a la reunión, ¿qué presentación es más eficaz?', opts: ['Un relato emotivo de la necesidad del distrito', 'Datos claros de monto, estado técnico, hitos y riesgos', 'Una promesa de reconocimiento público'], correct: 1, why: 'La gerencia decide con cifras y riesgos; el relato apoya pero no reemplaza.' },
+    { q: '¿Cuál de estas preguntas hace avanzar mejor la conversación?', opts: ['¿Van a financiar el proyecto?', '¿Podemos anunciarlo en la prensa?', '¿Qué información necesitan ver para una primera evaluación?'], correct: 2, why: 'Aclara el camino sin forzar un compromiso que la empresa no puede dar todavía.' },
+    { q: 'Un alcalde pide respuesta hoy porque hay elecciones. Esto es…', opts: ['Aceptable si hay urgencia', 'Contraproducente: presiona con fechas políticas ajenas al calendario de la empresa', 'Lo recomendado'], correct: 1, why: 'La empresa sigue su propio calendario tributario y financiero; la presión daña la relación.' },
+    { q: 'La empresa dice que evaluará el proyecto. ¿Qué significa?', opts: ['Que ya decidió financiar', 'Que evaluará, sin compromiso mientras no se cumplan los pasos formales', 'Que la obra está adjudicada'], correct: 1, why: 'La decisión de participar sigue siendo de la empresa y se formaliza en el proceso y el convenio.' }
+  ]
+});

@@ -1,5 +1,5 @@
 Lesson.start({
-  id: 'ruedas-de-inversionistas', area: 'Atraer al financista', areaIcon: '🎪', icon: '🎪',
+  id: 'ruedas-de-inversionistas', area: 'Atraer al financista', areaIcon: '🧲', icon: '🎪',
   title: 'Ruedas de inversionistas', subtitle: 'Diez minutos frente a una empresa: qué llevar, qué decir y qué no prometer.', norma: 'Principio clave: en una rueda se presenta cartera y se genera interés; los compromisos solo nacen de los pasos formales previstos en la norma vigente (DS 038-2026-EF; verificar) y en el convenio.',
   intro: '<p>Las ruedas o eventos de presentación de cartera reúnen en un mismo lugar a entidades públicas y empresas interesadas. Son una oportunidad valiosa, pero se pierde si llegas sin preparación: hay poco tiempo, muchas mesas y gerentes que ya vieron varias fichas ese día.</p><p>Esta lección explica cómo prepararte, qué llevar y cómo cerrar la conversación con un paso concreto, <b>sin prometer nada que no controles</b>.</p>',
   sections: [
